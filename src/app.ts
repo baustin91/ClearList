@@ -5,6 +5,7 @@ import logger from './middleware/logger.middleware';
 import cors from 'cors';
 import helmet from 'helmet';
 import dotenv from "dotenv";
+import usersRouter from './users/user.routes';
 
 dotenv.config();
 
@@ -19,9 +20,9 @@ app.use(express.json());
 // Parse URL-encoded bodies
 app.use(express.urlencoded({ extended: true}));
 
-app.use(express.urlencoded({ extended: true }));
-
 app.use(helmet());
+
+app.use('/', [listRouter, taskRouter, usersRouter]);
 
 console.log(process.env.MY_SQL_DB_HOST);
 
